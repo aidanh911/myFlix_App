@@ -58,8 +58,19 @@ let topMovies = [
     },
 ]
 
+/* express.static not working, updated versions, dependencies, tried using path.join, the only way it works if i use .get
 
+these don't work, I have modified them in small ways to try and specify the file path better but they dont work
 app.use(express.static(__dirname + '/public'));
+
+app.use('/documentation.html', express.static('public'))
+
+*/
+
+
+app.get("/documentation", (req, res) => {
+    res.sendFile(path.join(__dirname, "public/documentation.html"));
+});
 
 app.get('/', (req, res) => {
     res.send('Welcome to my movie list!')
