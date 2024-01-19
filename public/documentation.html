@@ -192,7 +192,7 @@
 
     <tr>
         <th>Allow users to add a movie to their list of favorites</th>
-        <td>/users/:username/movies/:_id</td>
+        <td>/users/:name/movies/:_id</td>
         <td>POST</td>
         <td>In the Url you add the object Id of the movie you would like to add. Example: http://localhost:8080/users/Alex%20Johnson/movies/65a60d5ba2988b7587b38dfa</td>
         <td>It returns the new user object with the correct movie added to the users favoriteMovies array.
@@ -219,7 +219,7 @@
 
     <tr>
         <th>Allow users to delete a movie from their favorite movie list</th>
-        <td>/users/:id/:movieTitle</td>
+        <td>/users/:name/:movieTitle</td>
         <td>DELETE</td>
         <td>none</td>
         <td>sends a 200 status code as well as removes the specified movie title from the users favorite movie array</td>
