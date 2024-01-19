@@ -7,18 +7,20 @@ const mongoose = require('mongoose');
 const morgan = require('morgan')
 let auth = require('./auth')(app);
 const passport = require('passport');
-require('./passport')
-
+require('./passport');
+const cors = require('cors');
+const {check, validationResult} = require('express-validator');
 
 const models=require('./models.js');
 
 const Movies = models.Movie;
-const User = models.User;
+const Users = models.User;
 
 
 mongoose.connect('mongodb://127.0.0.1:27017/[MyFlixDB]', { useNewUrlParser: true, useUnifiedTopology: true });
 
 const db = mongoose.connection;
+
 
 db.on('error', (error) => {
     console.error('MongoDB connection error:', error);
@@ -32,11 +34,13 @@ db.on('disconnected', () => {
     console.log('MongoDB disconnected');
 });
 
-
+app.use(cors())
 app.use(morgan('dev'))
 
 app.use(body_Parser.json());
 app.use(body_Parser.urlencoded({ extended: true }));
+
+
 
 // let users = [
 //     {
@@ -136,16 +140,27 @@ app.use("/documentation.html", express.static("public"))
  */
 
 //UPDATE username for selected user
-app.put('/users/:username', passport.authenticate('jwt', { session: false }), async (req, res) => {
+app.put('/users/:username', passport.authenticate('jwt', { session: false }), [
+    check('Username', 'Username is required').isLength({ min: 5 }),
+    check('Username', 'Username contains non-alphanumeric characters - not allowed.').isAlphanumeric(),
+    check('Password', 'Password is required').not().isEmpty(),
+    check('Email', 'Email does not appear to be valid').isEmail()
+], async (req, res) => {
     if(req.user.username !== req.params.username) {
         return res.status(400).send('Permission denied')
 
+    }
+
+    let errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+        return res.status(422).json({ errors: errors.array() });
     }
     try {
         console.log('Updating user:', req.params.username);
         console.log('Request body:', req.body);
 
-        const updatedUser = await User.findOneAndUpdate(
+        const updatedUser = await Users.findOneAndUpdate(
             { username: req.params.username },
             {
                 $set: {
@@ -169,24 +184,52 @@ app.put('/users/:username', passport.authenticate('jwt', { session: false }), as
 
 // CREATE new user in the users array
 
-app.post("/users", async (req, res) => {
-    try {
-        const newUser = {
-            name: req.body.name,
-            email: req.body.email,
-            username: req.body.username,
-            password: req.body.password,
-            favoriteMovies: [],
-            birthday: req.body.birthday,
-        };
+app.post("/users", [
+    check('Username', 'Username is required').isLength({ min: 5 }),
+    check('Username', 'Username contains non-alphanumeric characters - not allowed.').isAlphanumeric(),
+    check('Password', 'Password is required').not().isEmpty(),
+    check('Email', 'Email does not appear to be valid').isEmail()
+], async (req, res) => {
+    let errors = validationResult(req);
 
-        const user = await User.create(newUser);
-        res.status(201).json(user);
-    } catch (err) {
-        console.error(err);
-        res.status(500).send('Error: ' + err);
+    if (!errors.isEmpty()) {
+        return res.status(422).json({ errors: errors.array() });
     }
+
+    let hashedPassword = Users.hashPassword(req.body.password);
+
+    if (hashedPassword) {
+        console.log(hashedPassword);
+    } else {
+        console.log('Hash password not created');
+    }
+
+    await Users.findOne({ username: req.body.username })
+        .then((user) => {
+            if (user) {
+                return res.status(400).send(req.body.username + ' already exists');
+            } else {
+                Users.create({
+                    name: req.body.name,
+                    email: req.body.email,
+                    username: req.body.username,
+                    password: hashedPassword,
+                    favoriteMovies: [],
+                    birthday: req.body.birthday,
+                })
+                    .then((user) => res.status(201).json(user))
+                    .catch((error) => {
+                        console.error(error);
+                        res.status(500).send('Error: ' + error);
+                    });
+            }
+        })
+        .catch((error) => {
+            console.error(error);
+            res.status(500).send('Error: ' + error);
+        });
 });
+
 
 //CREATE new movie in the specified users favorite movie list
 app.post('/users/:name/movies/:_id', passport.authenticate('jwt', { session: false }),async (req, res) => {
@@ -198,7 +241,7 @@ app.post('/users/:name/movies/:_id', passport.authenticate('jwt', { session: fal
     try {
         console.log('Adding movie', req.params._id);
 
-        const updatedUser = await User.findOneAndUpdate(
+        const updatedUser = await Users.findOneAndUpdate(
             { name: req.params.name },
             { $push: { favoriteMovies: req.params._id } },
             { new: true }
@@ -223,7 +266,7 @@ app.delete ('/users/:name/:movieID', passport.authenticate('jwt', { session: fal
         console.log('Deleting movie from user\'s favorites by id', req.params.movieID, 'for user id', req.params.name);
 
 
-        const updatedUser = await User.findOneAndUpdate(
+        const updatedUser = await Users.findOneAndUpdate(
             { name: req.params.name },
             { $pull: { favoriteMovies: req.params.movieID } },
             { new: true }
@@ -259,7 +302,7 @@ app.delete('/users/:id', passport.authenticate('jwt', { session: false }), async
 
         console.log('Deleting user with ID', userIdFromParams);
 
-        const deletedUser = await User.findOneAndDelete(
+        const deletedUser = await Users.findOneAndDelete(
             { _id: userIdFromParams }
         );
 
@@ -267,7 +310,7 @@ app.delete('/users/:id', passport.authenticate('jwt', { session: false }), async
             return res.status(404).send('User not found');
         }
 
-        const updatedUsers = await User.find();
+        const updatedUsers = await Users.find();
 
         res.json(updatedUsers);
     } catch (err) {
@@ -305,7 +348,7 @@ app.get("/movies", passport.authenticate('jwt', { session: false }), async (req,
 // READ users array
 app.get("/users", passport.authenticate('jwt', { session: false }), async (req, res) => {
     try {
-        const users = await User.find();
+        const users = await Users.find();
         console.log('Movies found:', users);
         res.status(200).json(users);
     } catch (err) {
