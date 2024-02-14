@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello, world!</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="" />
+    <style>
+        table, th, td {
+            border: 1px solid;
+            padding: 8px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        p {
+            text-align: center;
+        }
+
+        #endTable {
+            width: 100%;
+        }
+    </style>
+
+
+</head>
+<body>
+<h1>myFlix API</h1>
+<p>
+    this API allows users to sign up to get access to tailored information based on their favorite movies, directors, and genres.
+    users will also be able to add a list of their favorite movies to their personal account.</p>
+<h1> Endpoint Table
+</h1>
+<table id="endTable">
+    <colgroup span="4"></colgroup>
+    <tr>
+
+        <th style="width: 10%">Logic</th>
+        <th>URL</th>
+        <th>Method</th>
+        <th style="width: 20%">Request body data format</th>
+        <th>Response body data format</th>
+    </tr>
+
+    <tr>
+
+        <th>Return a list of ALL movies to the user</th>
+        <td>/movies</td>
+        <td>GET</td>
+        <td>none</td>
+        <td>An array of JSON objects holding data about all the movies in the
+            database </td>
+    </tr>
+
+    <tr>
+
+        <th>Return movie object based on movie title</th>
+        <td>/movies/:title</td>
+        <td>GET</td>
+        <td>none</td>
+        <td>JSON object with all data relevant to movie title. Example:
+            <br>
+        <code>
+            {
+            "_id": "65a609fea2988b7587b38df6",
+            "title": "The Dark Knight",
+            "plotDescription": "A superhero film directed by Christopher Nolan, featuring Batman.",
+            "genre": {
+            "name": "Crime",
+            "description": "A film genre inspired by and analogous to the crime fiction literary genre. Films of this genre generally involve various aspects of crime and its detection.",
+            "_id": "65a76310e8b9493150ae92e3"
+            },
+            "director": {
+            "name": "Christopher Nolan",
+            "biography": "Christopher Edward Nolan CBE is a British-American filmmaker. Known for his Hollywood blockbusters with complex storytelling, Nolan is considered a leading filmmaker of the 21st century. He has received many accolades and his films have grossed more than $6 billion worldwide.",
+            "birthYear": 1970,
+            "deathYear": null,
+            "_id": "65a76310e8b9493150ae92e4"
+            },
+            "imageUrl": "https://example.com/darkknight.jpg"
+            }
+
+        </code>
+        </td>
+
+    </tr>
+
+    <tr>
+        <th>Return genre object by genre name</th>
+        <td>/movies/genre/:genreName</td>
+        <td>GET</td>
+        <td>none</td>
+        <td>JSON object with data relevant to requested genre. Example:
+            <br>
+        <code>
+            {
+            "name": "Drama",
+            "description": "Drama is a category or genre of narrative fiction intended to be more serious than humorous in tone.",
+            "_id": "65a76993ac68d64b91f383a8"
+            }
+        </code>
+        </td>
+
+    </tr>
+
+    <tr>
+        <th>Return data about a director by name</th>
+        <td>/movies/director/:directorName</td>
+        <td>GET</td>
+        <td>none</td>
+        <td>JSON object with data relevant to requested director. Example:
+        <code>
+            {
+            "name": "Christopher Nolan",
+            "biography": "Christopher Edward Nolan CBE is a British-American filmmaker. Known for his Hollywood blockbusters with complex storytelling, Nolan is considered a leading filmmaker of the 21st century. He has received many accolades and his films have grossed more than $6 billion worldwide.",
+            "birthYear": 1970,
+            "deathYear": null,
+            "_id": "65a76ac2521fcdd68b5b6014"
+            }
+        </code>
+        </td>
+
+
+    </tr>
+
+    <tr>
+        <th>Allow new users to register</th>
+        <td>/users</td>
+        <td>POST</td>
+        <td>JSON object with required user info, in the form of:
+            <br>
+            <code>
+                {
+                "_id": "65a77885bf5875669c921fd5",
+                "name": "OJ Simpson",
+                "email": "OJ@gmail.com",
+                "username": "OJ4LYFE",
+                "password": "N0tGuilty",
+                "birthday": "2001-01-01T00:00:00.000Z",
+                "favoriteMovies": [],
+                "__v": 0
+                }
+            </code>
+        </td>
+        <td> sends a 201 Created status code along with the newUser object in JSON format as the response. Example:
+            <br>
+            <code>
+                {
+                "_id": "65a77885bf5875669c921fd5",
+                "name": "OJ Simpson",
+                "email": "OJ@gmail.com",
+                "username": "OJ4LYFE",
+                "password": "N0tGuilty",
+                "birthday": "2001-01-01T00:00:00.000Z",
+                "favoriteMovies": [],
+                "__v": 0
+                }
+            </code>
+        </td>
+    </tr>
+
+    <tr>
+        <th>Allow users to update their info based on their username</th>
+        <td>/users/:username</td>
+        <td>PUT</td>
+        <td>Json Object with new info. In the form of:
+            <code>
+                {"name": "Emily Braun"}
+            </code>
+        </td>
+        <td>JSON object containing the new object with the updated information. Example:
+            <code>
+                {
+                "_id": "65a6157fa2988b7587b38e02",
+                "name": "Emily Braun",
+                "email": "emily.brown@example.com",
+                "username": "emily_brown",
+                "password": "newpassword4",
+                "favoriteMovies": [
+                "65a60d5ba2988b7587b38dfb",
+                "65a609fea2988b7587b38df5",
+                "65a609fea2988b7587b38df7"
+                ],
+                "birthday": "1988-12-05T00:00:00.000Z"
+                }
+            </code>
+        </td>
+
+    <tr>
+
+    <tr>
+        <th>Allow users to add a movie to their list of favorites</th>
+        <td>/users/:name/movies/:_id</td>
+        <td>POST</td>
+        <td>In the Url you add the object Id of the movie you would like to add. Example: http://localhost:8080/users/Alex%20Johnson/movies/65a60d5ba2988b7587b38dfa</td>
+        <td>It returns the new user object with the correct movie added to the users favoriteMovies array.
+            <code>
+                {
+                "_id": "65a6157fa2988b7587b38e01",
+                "name": "Alex Johnson",
+                "email": "alex.johnson@example.com",
+                "username": "alex_johnson",
+                "password": "newpassword3",
+                "favoriteMovies": [
+                "65a609fea2988b7587b38df6",
+                "65a609fea2988b7587b38df5",
+                "65a609fea2988b7587b38df7",
+                "65a60d5ba2988b7587b38dfa"
+                ],
+                "birthday": "1992-03-10T00:00:00.000Z"
+                }
+            </code>
+
+        </td>
+
+    </tr>
+
+    <tr>
+        <th>Allow users to delete a movie from their favorite movie list</th>
+        <td>/users/:name/:movieTitle</td>
+        <td>DELETE</td>
+        <td>none</td>
+        <td>sends a 200 status code as well as removes the specified movie title from the users favorite movie array</td>
+
+    </tr>
+
+    <tr>
+        <th>Delete User from Users array</th>
+        <td>/users/:id</td>
+        <td>DELETE</td>
+        <td>none</td>
+        <td>returns the updated users collection, without the user you just deleted</td>
+    </tr>
+
+
+</table>
+</body>
+</html>
