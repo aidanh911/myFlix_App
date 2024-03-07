@@ -1,0 +1,180 @@
+[{
+  "_id": {
+    "$oid": "65a609fea2988b7587b38df5"
+  },
+  "title": "Inception",
+  "plotDescription": "A mind-bending heist thriller directed by Christopher Nolan.",
+  "genre": {
+    "name": "Action",
+    "description": "Action is a film genre in which the protagonist is thrust into a series of events that typically involve violence and physical feats"
+  },
+  "director": {
+    "name": "Christopher Nolan",
+    "biography": "Christopher Edward Nolan CBE is a British-American filmmaker. Known for his Hollywood blockbusters with complex storytelling, Nolan is considered a leading filmmaker of the 21st century. He has received many accolades and his films have grossed more than $6 billion worldwide.",
+    "birthYear": 1970,
+    "deathYear": null
+  },
+  "imageUrl": "https://example.com/inception.jpg"
+},
+{
+  "_id": {
+    "$oid": "65a609fea2988b7587b38df6"
+  },
+  "title": "The Dark Knight",
+  "plotDescription": "A superhero film directed by Christopher Nolan, featuring Batman.",
+  "genre": {
+    "name": "Crime",
+    "description": "A film genre inspired by and analogous to the crime fiction literary genre. Films of this genre generally involve various aspects of crime and its detection."
+  },
+  "director": {
+    "name": "Christopher Nolan",
+    "biography": "Christopher Edward Nolan CBE is a British-American filmmaker. Known for his Hollywood blockbusters with complex storytelling, Nolan is considered a leading filmmaker of the 21st century. He has received many accolades and his films have grossed more than $6 billion worldwide.",
+    "birthYear": 1970,
+    "deathYear": null
+  },
+  "imageUrl": "https://example.com/darkknight.jpg"
+},
+{
+  "_id": {
+    "$oid": "65a609fea2988b7587b38df7"
+  },
+  "title": "Pulp Fiction",
+  "plotDescription": "A crime film directed by Quentin Tarantino.",
+  "genre": {
+    "name": "Drama",
+    "description": "Drama is a category or genre of narrative fiction intended to be more serious than humorous in tone."
+  },
+  "director": {
+    "name": "Quentin Tarantino",
+    "biography": "Renowned for his unique style and dialogue-driven narratives.",
+    "birthYear": 1963,
+    "deathYear": null
+  },
+  "imageUrl": "https://example.com/pulpfiction.jpg"
+},
+{
+  "_id": {
+    "$oid": "65a609fea2988b7587b38df8"
+  },
+  "title": "Spirited Away",
+  "plotDescription": "An animated fantasy film directed by Hayao Miyazaki.",
+  "genre": {
+    "name": "Animation",
+    "description": "Animation is a filmmaking technique by which still images are manipulated to create moving images. In traditional animation, images are drawn or painted by hand on transparent celluloid sheets to be photographed and exhibited on film."
+  },
+  "director": {
+    "name": "Hayao Miyazaki",
+    "biography": "Legendary Japanese animator and co-founder of Studio Ghibli.",
+    "birthYear": 1941,
+    "deathYear": null
+  },
+  "imageUrl": "https://example.com/spiritedaway.jpg"
+},
+{
+  "_id": {
+    "$oid": "65a609fea2988b7587b38df9"
+  },
+  "title": "The Matrix",
+  "plotDescription": "A groundbreaking action film directed by the Wachowskis.",
+  "genre": {
+    "name": "Action",
+    "description": "Action is a film genre in which the protagonist is thrust into a series of events that typically involve violence and physical feats."
+  },
+  "director": {
+    "name": "The Wachowskis",
+    "biography": "Known for groundbreaking films like The Matrix trilogy.",
+    "birthYear": null,
+    "deathYear": null
+  },
+  "imageUrl": "https://example.com/thematrix.jpg"
+},
+{
+  "_id": {
+    "$oid": "65a60d5ba2988b7587b38dfa"
+  },
+  "title": "Forrest Gump",
+  "plotDescription": "A heartwarming drama directed by Robert Zemeckis.",
+  "genre": {
+    "name": "Drama",
+    "description": "Drama is a category or genre of narrative fiction intended to be more serious than humorous in tone."
+  },
+  "director": {
+    "name": "Robert Zemeckis",
+    "biography": "Acclaimed for his work in directing and producing.",
+    "birthYear": 1952,
+    "deathYear": null
+  },
+  "imageUrl": "https://example.com/forrestgump.jpg"
+},
+{
+  "_id": {
+    "$oid": "65a60d5ba2988b7587b38dfb"
+  },
+  "title": "Toy Story",
+  "plotDescription": "An animated family film directed by John Lasseter.",
+  "genre": {
+    "name": "Animation",
+    "description": "Animation is a filmmaking technique by which still images are manipulated to create moving images. In traditional animation, images are drawn or painted by hand on transparent celluloid sheets to be photographed and exhibited on film."
+  },
+  "director": {
+    "name": "John Lasseter",
+    "biography": "Pioneer in computer animation and co-founder of Pixar Animation Studios.",
+    "birthYear": 1957,
+    "deathYear": null
+  },
+  "imageUrl": "https://example.com/toystory.jpg"
+},
+{
+  "_id": {
+    "$oid": "65a60d5ba2988b7587b38dfc"
+  },
+  "title": "Die Hard",
+  "plotDescription": "An action-packed thriller directed by John McTiernan.",
+  "genre": {
+    "name": "Action",
+    "description": "Action is a film genre in which the protagonist is thrust into a series of events that typically involve violence and physical feats."
+  },
+  "director": {
+    "name": "John McTiernan",
+    "biography": "Known for directing action films in the 1980s and 1990s.",
+    "birthYear": 1951,
+    "deathYear": null
+  },
+  "imageUrl": "https://example.com/diehard.jpg"
+},
+{
+  "_id": {
+    "$oid": "65a60d5ba2988b7587b38dfd"
+  },
+  "title": "The Departed",
+  "plotDescription": "A gripping crime drama directed by Martin Scorsese.",
+  "genre": {
+    "name": "Crime",
+    "description": "A film genre inspired by and analogous to the crime fiction literary genre. Films of this genre generally involve various aspects of crime and its detection."
+  },
+  "director": {
+    "name": "Martin Scorsese",
+    "biography": "Renowned filmmaker known for his crime and mob films.",
+    "birthYear": 1942,
+    "deathYear": null
+  },
+  "imageUrl": "https://example.com/thedeparted.jpg"
+},
+{
+  "_id": {
+    "$oid": "65a60d5ba2988b7587b38dfe"
+  },
+  "title": "Mad Max: Fury Road",
+  "plotDescription": "Set in a post-apocalyptic desert wasteland where petrol and water are scarce commodities, Fury Road follows Max Rockatansky, who joins forces with Imperator Furiosa against cult leader Immortan Joe and his army, leading to a lengthy road battle.",
+  "genre": {
+    "name": "Action",
+    "description": "Action is a film genre in which the protagonist is thrust into a series of events that typically involve violence and physical feats."
+  },
+  "director": {
+    "name": "George Miller",
+    "biography": "Australian filmmaker known for his Mad Max series.",
+    "birthYear": 1945,
+    "deathYear": null
+  },
+  "imageUrl": "https://example.com/madmax.jpg"
+}]
