@@ -1,0 +1,92 @@
+[{
+  "_id": {
+    "$oid": "65a6157fa2988b7587b38dff"
+  },
+  "name": "John Doe",
+  "email": "john.doe@example.com",
+  "username": "john_doe",
+  "password": "newpassword1",
+  "favoriteMovies": [
+    {
+      "$oid": "65a609fea2988b7587b38df9"
+    },
+    {
+      "$oid": "65a60d5ba2988b7587b38dfe"
+    },
+    {
+      "$oid": "65a609fea2988b7587b38df6"
+    }
+  ],
+  "birthday": {
+    "$date": "1990-05-15T00:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65a6157fa2988b7587b38e00"
+  },
+  "name": "Jane Smith",
+  "email": "jane.smith@example.com",
+  "username": "jane_smith",
+  "password": "newpassword2",
+  "favoriteMovies": [
+    {
+      "$oid": "65a60d5ba2988b7587b38dfb"
+    },
+    {
+      "$oid": "65a60d5ba2988b7587b38dfd"
+    },
+    {
+      "$oid": "65a609fea2988b7587b38df9"
+    }
+  ],
+  "birthday": {
+    "$date": "1985-08-22T00:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65a6157fa2988b7587b38e01"
+  },
+  "name": "Alex Johnson",
+  "email": "alex.johnson@example.com",
+  "username": "alex_johnson",
+  "password": "newpassword3",
+  "favoriteMovies": [
+    {
+      "$oid": "65a609fea2988b7587b38df6"
+    },
+    {
+      "$oid": "65a609fea2988b7587b38df5"
+    },
+    {
+      "$oid": "65a609fea2988b7587b38df7"
+    }
+  ],
+  "birthday": {
+    "$date": "1992-03-10T00:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65a6157fa2988b7587b38e02"
+  },
+  "name": "Emily Brown",
+  "email": "emily.brown@example.com",
+  "username": "emily_brown",
+  "password": "newpassword4",
+  "favoriteMovies": [
+    {
+      "$oid": "65a60d5ba2988b7587b38dfb"
+    },
+    {
+      "$oid": "65a609fea2988b7587b38df5"
+    },
+    {
+      "$oid": "65a609fea2988b7587b38df7"
+    }
+  ],
+  "birthday": {
+    "$date": "1988-12-05T00:00:00.000Z"
+  }
+}]
